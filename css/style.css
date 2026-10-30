@@ -1,0 +1,145 @@
+/* Custom enhancements on top of Tailwind CSS */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 114, 128, 0.8);
+}
+
+/* Smooth Drag & Drop styles */
+.task-card {
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s ease;
+  user-select: none;
+  cursor: grab;
+}
+.task-card:active {
+  cursor: grabbing;
+}
+.task-card.is-dragging {
+  opacity: 0.45;
+  transform: scale(0.98) rotate(1deg);
+}
+
+.kanban-column-content {
+  min-height: 140px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.kanban-column-content.drag-over {
+  background-color: rgba(99, 102, 241, 0.08);
+  border: 2px dashed #6366f1;
+  border-radius: 0.75rem;
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+}
+
+.live-indicator-glow {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.toast-enter {
+  animation: toastSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Modal Backdrops */
+.modal-backdrop {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Checkbox celebratory bounce */
+.task-checkbox:checked + span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* Badge glow effects */
+.badge-urgent {
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+.dark .badge-urgent {
+  background-color: rgba(153, 27, 27, 0.25);
+  color: #fca5a5;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.badge-high {
+  background-color: #ffedd5;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
+}
+.dark .badge-high {
+  background-color: rgba(154, 52, 18, 0.25);
+  color: #fdba74;
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.badge-medium {
+  background-color: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+.dark .badge-medium {
+  background-color: rgba(146, 64, 14, 0.25);
+  color: #fcd34d;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.badge-low {
+  background-color: #e0f2fe;
+  color: #075985;
+  border: 1px solid #bae6fd;
+}
+.dark .badge-low {
+  background-color: rgba(7, 89, 133, 0.25);
+  color: #7dd3fc;
+  border-color: rgba(14, 165, 233, 0.3);
+}
